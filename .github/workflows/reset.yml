@@ -1,0 +1,22 @@
+name: Reset APT repo
+on:
+  repository_dispatch:
+    types: [reset_repo]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Reset history
+        run: |
+          git switch -C gh-pages
+          git reset --hard origin/main
+          git push --set-upstream origin -f gh-pages
