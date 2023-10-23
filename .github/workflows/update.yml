@@ -1,5 +1,7 @@
 name: Update packages
 on:
+  repository_dispatch:
+    types: [new_package_release]
   workflow_dispatch:
   workflow_run:
     workflows: ["Reset APT repo"]
