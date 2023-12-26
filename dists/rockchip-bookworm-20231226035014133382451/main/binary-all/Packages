@@ -1,0 +1,32 @@
+Package: rockchip-pulseaudio-config
+Version: 0.3.0
+Architecture: all
+Maintainer: "Radxa Computer Co., Ltd" <dev@radxa.com>
+Installed-Size: 27
+Section: libs
+Priority: optional
+Description: Rockchip specific PulseAudio config
+ This package provides Rockchip PulseAudio config.
+Filename: pool/rockchip-bookworm/main/r/rockchip-pulseaudio-config/rockchip-pulseaudio-config_0.3.0_all.deb
+MD5sum: 7a3ccb2f82aae5ac8d4a606ee1efbe45
+SHA1: 3d812a309998799e8fdbcfa2c511c1240641674c
+SHA256: 84c3825adbb0939f20cf56c8f1c83fae042a6ca1fde1411e8170d4552dc00445
+SHA512: 7f573df5eb3d8f2ff7d0d7f525662264551fe808388f4ba49c4ef66d3e49ca934fd43f528a9b376a503c9390e5449e67e5af6786094538197d30f5c23f5400d7
+Size: 4976
+
+Package: rockchip-udev
+Version: 0.3.0
+Architecture: all
+Maintainer: "Radxa Computer Co., Ltd" <dev@radxa.com>
+Installed-Size: 25
+Section: libs
+Priority: optional
+Description: Rockchip specific udev rules
+ This package provides Rockchip specific udev rules.
+Filename: pool/rockchip-bookworm/main/r/rockchip-udev/rockchip-udev_0.3.0_all.deb
+MD5sum: a802daa424de1d8ef962b1a0a7c35e27
+SHA1: f3beb10f7120845a7c0ee6c0f93010bea00719d3
+SHA256: c743de13a6ae27c80ce5882611069a632cee92ae75af5f26ce06c6430e0ac5f0
+SHA512: 6cedbc18fec80e98e3e724e995f62e19198167ceb2146f7fb589a6b1761d7072f641188c18498d43cb1439268c586d0530419118e362d5ab7497fbb6c0fb4daa
+Size: 5320
+

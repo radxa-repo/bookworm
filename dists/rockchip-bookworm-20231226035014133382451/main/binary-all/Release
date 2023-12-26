@@ -1,0 +1,9 @@
+Archive: rockchip-bookworm
+Component: main
+Origin: Radxa
+Label: Freight
+NotAutomatic: no
+ButAutomaticUpgrades: no
+Architecture: all
+Date: Tue, 26 Dec 2023 03:50:14 UTC
+Valid-Until: Tue, 30 Nov 2038 00:00:00 UTC
