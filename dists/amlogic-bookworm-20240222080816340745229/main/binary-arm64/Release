@@ -1,0 +1,9 @@
+Archive: amlogic-bookworm
+Component: main
+Origin: Radxa
+Label: Freight
+NotAutomatic: no
+ButAutomaticUpgrades: no
+Architecture: arm64
+Date: Thu, 22 Feb 2024 08:08:16 UTC
+Valid-Until: Tue, 30 Nov 2038 00:00:00 UTC

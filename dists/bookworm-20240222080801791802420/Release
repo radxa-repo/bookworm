@@ -1,0 +1,38 @@
+Origin: Radxa
+Label: Freight
+Suite: bookworm
+Codename: bookworm
+NotAutomatic: no
+ButAutomaticUpgrades: no
+Components: main 
+Architectures: all arm64
+Date: Thu, 22 Feb 2024 08:08:01 UTC
+Valid-Until: Tue, 30 Nov 2038 00:00:00 UTC
+MD5Sum:
+ bb161284b02e9ca7e26ec9a78f4dc7e8 202 main/binary-all/Release
+ 5cb3c0ec201f9d5b5c0a8ea971765129 48510 main/binary-all/Packages.gz
+ 77f3d2ae645ee98e556a22c87a61936f 183414 main/binary-all/Packages
+ efa810f6eb6720d31583276ea8512cbe 204 main/binary-arm64/Release
+ 198f574dda8324bc9e595147195c79ce 56620 main/binary-arm64/Packages.gz
+ bfc855d358e62a4c12dda33b117d1849 208476 main/binary-arm64/Packages
+SHA1:
+ 174b1d09e65aca80f623905eb4be3d57bc8406d3 202 main/binary-all/Release
+ 89843bc09b988f5134e5aaf41893cbd7d6ef000f 48510 main/binary-all/Packages.gz
+ 19cda56d16a62029f9eac7a3134807dec9ca5451 183414 main/binary-all/Packages
+ b03b471f152df0233ef044dba52219d89c2a1a65 204 main/binary-arm64/Release
+ 41ca9bf5fe4693166d568d96499491c8130f0dbb 56620 main/binary-arm64/Packages.gz
+ 4becc0dd1384a635717852638ae32ee693c24a1b 208476 main/binary-arm64/Packages
+SHA256:
+ c4350104d2666161ce25be82a0dca164c588a076cb4a4bad7d0538df3dd7d335 202 main/binary-all/Release
+ c48775a71a79078c6c2f9dca1c3de7fb1825d27aad961c5673d287bb6ab8d6cb 48510 main/binary-all/Packages.gz
+ 1995803fd0c002e2aeddd4ac62a6a4223b10c2909fcbcaa5505151041c55c452 183414 main/binary-all/Packages
+ 9f00bcc56a938c4decc2b9f6fc4ddafc4a705e534a2f73bc6a26e7f9f3f9f9c9 204 main/binary-arm64/Release
+ 95ba32595fc6a82945fc94067815a6b29aa955edfbd43dd16d274e9cb66f3a21 56620 main/binary-arm64/Packages.gz
+ f48a36b0bdf793ffac8f0ac4e5d35e06f875d640b7e4e2b66bb802b7c5604273 208476 main/binary-arm64/Packages
+SHA512:
+ 9d468cee197f5dca898ca1d3ec2273954263fbf3497e4c49504dcd4d8b03cc2e55de45c58b09681ca1db5a2d9abe7e324461e451028711f408039f5eccd414db 202 main/binary-all/Release
+ cd6972c30cc76310a78bda5d44cb83169146e025e0cd182b83e89695c5d030cd39f74a84ef3093c202efded664e8d99c07b10ba9bd267f99284adc2205572dab 48510 main/binary-all/Packages.gz
+ 4e95ec0469f1daf51066f48988876351fb2a4454ca3b512a6b94ac0a2bae133f3e33db4a73c25045bd262aaff69c367195c7b6eeeabc8149c1d7ab0e81d55e69 183414 main/binary-all/Packages
+ c5ea4978622341687e6616bd0f887ab3d767ec25b3204ee7e887c21f7f57a903a7d330cc603b0211e872414502b5465a36461df53b17b9381de99195ba7a978b 204 main/binary-arm64/Release
+ 122bc8a9cdc77bdd007fad3f5ee71597fcbef6c4bcaede8a3291d8c5814ecc43f1d7b261563bf48dc98dee1057c844eb576097405c202ba460f7f4284a7a6c8d 56620 main/binary-arm64/Packages.gz
+ f3a56331638304a11302dd2e0dd2fb9b18a03d0cc8fe0f40e39dc02360f10819bf09c5fab9a99c85518d27582ba785861ebcef9034191e1771237e7e3c1ada8f 208476 main/binary-arm64/Packages
