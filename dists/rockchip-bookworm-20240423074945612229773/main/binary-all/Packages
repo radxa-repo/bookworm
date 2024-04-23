@@ -1,0 +1,212 @@
+Package: cheese-common
+Source: cheese
+Version: 43.0-1
+Architecture: all
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Installed-Size: 2959
+Depends: dconf-gsettings-backend | gsettings-backend
+Section: gnome
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://wiki.gnome.org/Apps/Cheese
+Description: Common files for the Cheese tool to take pictures and videos
+ A webcam application that supports image and video capture. Makes
+ it easy to take photos and videos of you, your friends, pets or whatever
+ you want. Allows you to apply fancy visual effects, fine-control image
+ settings and has features such as Multi-Burst mode, Countdown timer
+ for photos.
+ .
+ This package contains the common files and translations.
+Filename: pool/rockchip-bookworm/main/c/cheese/cheese-common_43.0-1_all.deb
+MD5sum: 1e264b7b8630dd00a6bb32f421a0af3e
+SHA1: fd2ff6e23a462947c4bd1a36e7996e18c3782ac3
+SHA256: e97af48c8441c679028c056d51b457a0e606557898aa7758cb2a60ca9c4aff27
+SHA512: f9c7e68f98cc7d939a402ac6bf65198b02474d177927bf6718e92aec0bffd75e4910e2b0a708aced53f868838f99dc5f7d2d24fd0fd0f8af61c3a8db5502252e
+Size: 723048
+
+Package: glmark2-data
+Source: glmark2
+Version: 2023.01+dfsg-1
+Architecture: all
+Maintainer: Debian Games Team <pkg-games-devel@lists.alioth.debian.org>
+Installed-Size: 9310
+Recommends: glmark2-drm (>= 2023.01+dfsg-1) | glmark2-wayland (>= 2023.01+dfsg-1) | glmark2-x11 (>= 2023.01+dfsg-1) | glmark2-es2-wayland (>= 2023.01+dfsg-1) | glmark2-es2-drm (>= 2023.01+dfsg-1) | glmark2-es2-x11 (>= 2023.01+dfsg-1)
+Section: utils
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://github.com/glmark2/glmark2
+Description: OpenGL (ES) 2.0 benchmark suite -- data files
+ glmark2 is a benchmark for OpenGL (ES) 2.0. It uses only the subset of
+ the OpenGL 2.0 API that is compatible with OpenGL ES 2.0.
+ glmark2 offers a suite of scenes that can be used to measure many
+ aspects of OpenGL (ES) 2.0 performance.
+ The way in which each scene is rendered is configurable through a set
+ of options.
+ .
+ This package provides data files.
+Filename: pool/rockchip-bookworm/main/g/glmark2/glmark2-data_2023.01+dfsg-1_all.deb
+MD5sum: f57ac9c3b2475c71a889e6fa38424a2b
+SHA1: 77b9c4229fa40b531033072d6ae65d327bed4651
+SHA256: 88a1d3bdecb60f0d5833875fe58cf37b6614b9056c7b8865ce4454849f1f1bbe
+SHA512: 952be68b678c09ca90e9b2e716cf25eb9aa127b2cd110c3432c6d1d378e37641a0b2a9f1f00ad7b3da8ef25be42d28a2ee7715461fd2f3c8f67ddefb2429842b
+Size: 6596172
+
+Package: libcheese-doc
+Source: cheese
+Version: 43.0-1
+Architecture: all
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Installed-Size: 465
+Suggests: devhelp
+Section: doc
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://wiki.gnome.org/Apps/Cheese
+Description: tool to take pictures and videos from your webcam - documentation
+ A webcam application that supports image and video capture. Makes
+ it easy to take photos and videos of you, your friends, pets or whatever
+ you want. Allows you to apply fancy visual effects, fine-control image
+ settings and has features such as Multi-Burst mode, Countdown timer
+ for photos.
+ .
+ This package contains the API documentation.
+Filename: pool/rockchip-bookworm/main/c/cheese/libcheese-doc_43.0-1_all.deb
+MD5sum: c87771352ae788ee3ce117bcf2d2ece2
+SHA1: 2d60d3f91f98509829ac417ebdeb568cfa4ae386
+SHA256: 65995efab40859fd1f3609632a9fe566bb0304feba4252628f24ab985406620c
+SHA512: 81af82968713a06e887fbcb4bf36868fe5544c2baa7f47f40cb949ff609aed0b375285c7b2d604965f0c8dd6aab82bcb7bd5661df4b242cb20714d199ef58bc7
+Size: 166048
+
+Package: libdrm-common
+Source: libdrm
+Version: 2.4.114-1
+Architecture: all
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
+Installed-Size: 42
+Section: libs
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://cgit.freedesktop.org/mesa/drm/
+Description: Userspace interface to kernel DRM services -- common files
+ This library implements the userspace interface to the kernel DRM
+ services.  DRM stands for "Direct Rendering Manager", which is the
+ kernelspace portion of the "Direct Rendering Infrastructure" (DRI).
+ The DRI is currently used on Linux to provide hardware-accelerated
+ OpenGL drivers.
+ .
+ This package provides common files for libdrm.
+Filename: pool/rockchip-bookworm/main/libd/libdrm/libdrm-common_2.4.114-1_all.deb
+MD5sum: 4f0ec02ca688b2a57f7fc0557011c9ad
+SHA1: 169c85a3f53d7b46203632a40c886c396a823c91
+SHA256: 32f9664138b38b224383c6986457d5ad2ec8efd559b1a0ce7749405f7a451aad
+SHA512: f74977801a4926f79270df013d089d4ca2d1a35329f626de8128018d7f8ca585bd01373b558a35abe54cd3d4720d20bec7a1b72fdafc98e001cc9dd3392de6cf
+Size: 7112
+
+Package: libdvbv5-doc
+Source: v4l-utils
+Version: 1.22.1-5
+Architecture: all
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 7034
+Suggests: devhelp
+Section: doc
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://linuxtv.org/downloads/v4l-utils/
+Description: Doxygen generated documentation for libdvbv5
+ This library provides functions to work with DVB devices that
+ implement the DVB v5 API.
+ .
+ This package provides doxygen generated documentation for the library.
+Filename: pool/rockchip-bookworm/main/v/v4l-utils/libdvbv5-doc_1.22.1-5_all.deb
+MD5sum: 2b629ef7af7da2d39471c79189c75b86
+SHA1: 6743af9b6fc0daaffb50ef0d3d7dbc5176d940bf
+SHA256: 89054e655b981a6c0d31e084b1ea95c1b49881fbeee1d17923cb44adf3bfeeed
+SHA512: 76b333556dad647e8a74263e0e75d23bdfc673e00d6cb1f12644fbcdfc426078606402bd663e8e9db51e1ed0fe8942401c16aac0a1d4dfe8b2a2e2aa8774beec
+Size: 1521968
+
+Package: libwayland-doc
+Source: wayland
+Version: 1.21.0-1
+Architecture: all
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
+Installed-Size: 732
+Conflicts: libwayland-dev (<< 1.10.0-2)
+Replaces: libwayland-dev (<< 1.10.0-2)
+Section: doc
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://wayland.freedesktop.org/
+Description: wayland compositor infrastructure - documentation files
+ Wayland is a protocol for a compositor to talk to its clients as well
+ as a C library implementation of that protocol. The compositor can be
+ a standalone display server running on Linux kernel modesetting and
+ evdev input devices, an X application, or a wayland client
+ itself. The clients can be traditional applications, X servers
+ (rootless or fullscreen) or other display servers.
+ .
+ This package contains the documentation for the Wayland libraries.
+ Non-developers likely have little use for this package.
+Filename: pool/rockchip-bookworm/main/w/wayland/libwayland-doc_1.21.0-1_all.deb
+MD5sum: 3dd6a5e16d066f081a33464cf3a28722
+SHA1: 2ac9c75083e7ca5aac6be019c65f8cd03fa9d57a
+SHA256: d7ba76e1236729eb76d2a5673396d654ac1868da55860ee4b806bad591ac9c8f
+SHA512: f615df6b8d3a2a36d13a2b8f2603c4050879503bb70611cf4743be452fd41a0733331b12f34156e628cf389cedb72733b303ab875eb02f3ddc68a6eee4c7df3f
+Size: 192464
+
+Package: rockchip-pulseaudio-config
+Source: rockchip-prebuilt
+Version: 0.4.0-linux-6.1-stan-rkr1-7
+Architecture: all
+Maintainer: "Radxa Computer Co., Ltd" <dev@radxa.com>
+Installed-Size: 28
+Section: libs
+Priority: optional
+Description: Rockchip specific PulseAudio config
+ This package provides Rockchip PulseAudio config.
+Filename: pool/rockchip-bookworm/main/r/rockchip-prebuilt/rockchip-pulseaudio-config_0.4.0-linux-6.1-stan-rkr1-7_all.deb
+MD5sum: 848de35be6967dd2aaee9b8a4518d545
+SHA1: 2fd4daadfeddeedde12963699bc31ac928ae175c
+SHA256: 50e650abc2ed10906fa8504ef9df975e7483768b4170c1dc02579c19d85b1025
+SHA512: 6bf0bc54409da1342135e34b885528aa9e8c2f55fab18dfaeecd06befb117ddf49f3107e55ea04864e91bf6506d9428afd51160619febfaf71f83a7b39e45c66
+Size: 5572
+
+Package: rockchip-udev
+Source: rockchip-prebuilt
+Version: 0.4.0-linux-6.1-stan-rkr1-7
+Architecture: all
+Maintainer: "Radxa Computer Co., Ltd" <dev@radxa.com>
+Installed-Size: 31
+Section: libs
+Priority: optional
+Description: Rockchip specific udev rules
+ This package provides Rockchip specific udev rules.
+Filename: pool/rockchip-bookworm/main/r/rockchip-prebuilt/rockchip-udev_0.4.0-linux-6.1-stan-rkr1-7_all.deb
+MD5sum: 1079a5a2e27ba2caefc430dbab5efda9
+SHA1: 1858d81325e5903f0771ce8a62b6dc97aeba410e
+SHA256: 10cc89511fc4ca8db118fb9d5fc5c9d86b2a5743b80b5f392c337a1f7360f793
+SHA512: 5b562cf23dc38f5fbeaf4e3f6a1dfbec90fe86557c7be6ded67d00ed413fd233b611e9e1847319d2f7d91eb81db4cbab41c32b44f426395ff1e209d751f97f0f
+Size: 6912
+
+Package: xserver-common
+Source: xorg-server
+Version: 2:21.1.7-3+deb12u2
+Architecture: all
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
+Installed-Size: 146
+Depends: x11-common, xkb-data, x11-xkb-utils
+Recommends: xfonts-base, xauth
+Replaces: xserver-xorg-core (<< 2:1.5.2)
+Section: x11
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://www.x.org/
+Description: common files used by various X servers
+ This package provides files necessary for all X.Org based X servers.
+Filename: pool/rockchip-bookworm/main/x/xorg-server/xserver-common_21.1.7-3+deb12u2_all.deb
+MD5sum: e4d7afda44206361e16e4d2c6d011517
+SHA1: 4d9e40db163e5146cd3147e3c9fdb570f5ce4863
+SHA256: 4c766aa9c6d3af9b6e8b82826b11833c848e3d15c3ddd61c8c09de2e0511a260
+SHA512: a0ae363734aeab9745462e4922c58bc4a122510ebd6c1096b73545a96a7cc17af53ee1457cad91a29136b376ea26842906c1f6fa599d2cc0e90d8a057f1a9ae5
+Size: 28900
+

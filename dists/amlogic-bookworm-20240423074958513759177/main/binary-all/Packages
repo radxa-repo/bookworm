@@ -1,0 +1,17 @@
+Package: radxa-repo-placeholder
+Version: 0.1.0
+Architecture: all
+Maintainer: "Radxa Computer Co., Ltd" <dev@radxa.com>
+Installed-Size: 9
+Section: libs
+Priority: optional
+Description: Radxa APT repo placeholder packages
+ This package provides placeholder packages for Radxa APT repo.
+ This is currently an empty package.
+Filename: pool/amlogic-bookworm/main/r/radxa-repo-placeholder/radxa-repo-placeholder_0.1.0_all.deb
+MD5sum: 812b0cc9287d9d5ae0d741dd51a396aa
+SHA1: a4108effb942088939b5861d058f89f290f95b4e
+SHA256: ebb88b953835fb6ad566333f4303dfa9b48e7506d7283427f43cb89b0f5c666c
+SHA512: 94d8edea17d7171f3fba8074101d9efb44b1a9f27f0511f21f23604b78b5c3b8c7b6c7e16730cfe20120e8f33cc531c764c22c229e041c06d1e43234ef7f3bf7
+Size: 1776
+

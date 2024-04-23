@@ -1,0 +1,9 @@
+Archive: bookworm
+Component: main
+Origin: Radxa
+Label: Freight
+NotAutomatic: no
+ButAutomaticUpgrades: no
+Architecture: arm64
+Date: Tue, 23 Apr 2024 07:49:28 UTC
+Valid-Until: Tue, 30 Nov 2038 00:00:00 UTC
