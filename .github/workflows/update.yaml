@@ -1,0 +1,92 @@
+concurrency:
+  cancel-in-progress: true
+  group: "${{ github.workflow }}-${{ github.ref }}"
+jobs:
+  update:
+    permissions:
+      contents: "write"
+      id-token: "write"
+      pages: "write"
+    runs-on: "ubuntu-latest"
+    steps:
+    - name: "Checkout rsdk"
+      uses: "actions/checkout@v4"
+      with:
+        repository: "RadxaOS-SDK/rsdk"
+    - name: "Checkout current repo"
+      uses: "actions/checkout@v4"
+      with:
+        path: ".infra-repo"
+    - env:
+        GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      id: "build"
+      name: "Build apt archive"
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y aptly pandoc
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+        
+        cat << EOF | gpg --import
+        ${{ secrets.GPG_KEY }}
+        EOF
+        cat << EOF | gpg --import
+        ${{ secrets.RADXA_APT_KEY_2024 }}
+        EOF
+        
+        suites=(
+            "bookworm"
+            "amlogic-bookworm"
+            "rockchip-bookworm"
+        )
+        
+        pushd .infra-repo
+        if [[ "${{ github.repository }}" != *-test ]] && \
+           wget "https://raw.githubusercontent.com/${{ github.repository }}-test/main/pkgs.lock" -O pkgs.lock.new; then
+            mv pkgs.lock.new pkgs.lock
+            git add pkgs.lock
+        fi
+        
+        ../src/bin/rsdk infra-pkg-snapshot
+        ../src/bin/rsdk infra-pkg-download "${suites[@]}"
+        ../src/bin/rsdk infra-repo-build "${suites[@]}"
+        git add pkgs.json
+        
+        cp pkgs.json ~/.aptly/public/rsdk-local/
+        pandoc --from gfm --to html --standalone README.md --output ~/.aptly/public/rsdk-local/index.html
+        
+        pushd ~/.aptly/public/rsdk-local/
+        find . > files.list
+        popd
+        
+        echo "pages=$(realpath ~/.aptly/public/rsdk-local/.)" >> $GITHUB_OUTPUT
+        
+        if [[ -n "$(git status --porcelain)" ]]; then
+            git commit -m "chore: update package snapshot"
+        fi
+        popd
+      shell: "bash"
+    - name: "Setup GitHub Pages"
+      uses: "actions/configure-pages@v5"
+    - name: "Upload artifact"
+      uses: "actions/upload-pages-artifact@v3"
+      with:
+        path: "${{ steps.build.outputs.pages }}"
+    - id: "deploy"
+      if: "github.event_name != 'pull_request'"
+      name: "Deploy to GitHub Pages"
+      uses: "actions/deploy-pages@v4"
+    - if: "steps.deploy.outcome == 'success'"
+      name: "Commit package snapshot"
+      run: |
+        pushd .infra-repo
+        git push
+        popd
+      shell: "bash"
+name: "Update packages"
+"on":
+  repository_dispatch:
+    types:
+    - "new_package_release"
+  workflow_dispatch: {}
+permissions: {}
