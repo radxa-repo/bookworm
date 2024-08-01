@@ -47,7 +47,7 @@
   "u-boot-latest": "2023.10-10",
   "u-boot-menu": "4.2.2",
   "u-boot-rknext": "2017.09-32",
-  "vendor-profiles": "0.3.8",
+  "vendor-profiles": "0.4.6",
   "vscodium-archive-keyring": "0.1.0",
   "xfce4-screensaver": "4.16.0-1"
 }
