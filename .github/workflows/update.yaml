@@ -9,10 +9,20 @@ jobs:
       pages: "write"
     runs-on: "ubuntu-latest"
     steps:
+    - env:
+        SECRETS: "${{ toJSON(secrets) }}"
+      name: "Secret tests"
+      uses: "actions/github-script@v7"
+      with:
+        script: |
+          const secrets = JSON.parse(process.env.SECRETS);
+          if (secrets.GPG_KEY === undefined || secrets.RADXA_APT_KEY_2024 === undefined) {
+              core.setFailed('Required secrets are unset!');
+          }
     - name: "Checkout rsdk"
       uses: "actions/checkout@v4"
       with:
-        ref: "404d824f2f6e0167bab38be9298104c7d70505d7"
+        ref: "809c3d13ade5a5de296f9d58be627e3982c4c5b4"
         repository: "RadxaOS-SDK/rsdk"
     - name: "Checkout current repo"
       uses: "actions/checkout@v4"
@@ -34,6 +44,16 @@ jobs:
         
         sudo apt-get update
         sudo apt-get install -y aptly pandoc
+        
+        # Workaround https://github.com/aptly-dev/aptly/issues/1297
+        git clone -b 1297-hack https://github.com/RadxaOS-SDK/aptly.git /tmp/aptly
+        export PATH="$HOME/go/bin:$PATH"
+        pushd /tmp/aptly
+        make release
+        popd
+        APTLY_PATH=/tmp/aptly/xc-out/*/linux_amd64
+        export PATH="$APTLY_PATH:$PATH"
+        
         git config --global user.name 'github-actions[bot]'
         git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
         
@@ -92,6 +112,20 @@ jobs:
         git push
         popd
       shell: "bash"
+    - name: "Download Pages artifact"
+      uses: "actions/download-artifact@v4"
+      with:
+        name: "github-pages"
+    - if: "steps.deploy.outcome == 'success'"
+      name: "Release Pages artifact"
+      uses: "softprops/action-gh-release@v2"
+      with:
+        body: "Rolling Pages artifact"
+        draft: false
+        files: "artifact.tar"
+        prerelease: false
+        tag_name: "github-pages"
+        token: "${{ secrets.GITHUB_TOKEN }}"
 name: "Update packages"
 "on":
   repository_dispatch:
