@@ -1,0 +1,113 @@
+concurrency:
+  cancel-in-progress: true
+  group: "${{ github.workflow }}-${{ github.ref }}"
+jobs:
+  build:
+    permissions:
+      contents: "write"
+      id-token: "write"
+      pages: "write"
+    runs-on: "ubuntu-latest"
+    steps:
+    - name: "Checkout rsdk"
+      uses: "actions/checkout@v4"
+      with:
+        ref: "5958384b771eb0023fb9ff0e9dddc509ef7a4ede"
+        repository: "RadxaOS-SDK/rsdk"
+    - name: "Checkout current repo"
+      uses: "actions/checkout@v4"
+      with:
+        path: ".infra-repo"
+    - env:
+        GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      id: "build"
+      name: "Build apt archive"
+      run: |
+        # ubuntu-latest is currently ubuntu-22.04, which provides aptly 1.4.0
+        # Only 1.5.0 supports Ubuntu's zstd compressed packages:
+        #   https://github.com/aptly-dev/aptly/pull/1050
+        # ubuntu-24.04 provides 1.5.0, but will not be available till August:
+        #   https://github.com/actions/runner-images/issues/9691#issuecomment-2063926929
+        # Install aptly from upstream archive for now.
+        sudo tee /etc/apt/sources.list.d/10-aptly.list <<< "deb http://repo.aptly.info/ squeeze main"
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EE727D4449467F0E
+        
+        sudo apt-get update
+        sudo apt-get install -y aptly pandoc
+        
+        # Workaround https://github.com/aptly-dev/aptly/issues/1297
+        git clone -b 1297-hack https://github.com/RadxaOS-SDK/aptly.git /tmp/aptly
+        export PATH="$HOME/go/bin:$PATH"
+        pushd /tmp/aptly
+        make release
+        popd
+        APTLY_PATH=/tmp/aptly/xc-out/*/linux_amd64
+        export PATH="$APTLY_PATH:$PATH"
+        
+        cat << EOF | gpg --import
+        ${{ secrets.GPG_KEY }}
+        EOF
+        cat << EOF | gpg --import
+        ${{ secrets.RADXA_APT_KEY_2024 }}
+        EOF
+        
+        suites=(
+            "bookworm"
+            "amlogic-bookworm"
+            "rockchip-bookworm"
+        )
+        
+        pushd .infra-repo
+        
+        ../src/bin/rsdk infra-pkg-download "${suites[@]}"
+        ../src/bin/rsdk infra-repo-sync "${suites[@]}"
+        export RSDK_REPO_ORIGIN="$(../src/bin/rsdk config infra.repository.origin)"
+        
+        pushd "$HOME/.aptly/public/$RSDK_REPO_ORIGIN/"
+            cp "$OLDPWD/pkgs.json" ./
+            pandoc --from gfm --to html --standalone "$OLDPWD/README.md" --output index.html
+            find . > files.list
+            echo "pages=$(realpath .)" >> $GITHUB_OUTPUT
+        popd
+        
+        popd
+      shell: "bash"
+    - name: "Setup GitHub Pages"
+      uses: "actions/configure-pages@v5"
+    - name: "Upload artifact"
+      uses: "actions/upload-pages-artifact@v3"
+      with:
+        path: "${{ steps.build.outputs.pages }}"
+    - id: "deploy"
+      if: "github.event_name != 'pull_request'"
+      name: "Deploy to GitHub Pages"
+      uses: "actions/deploy-pages@v4"
+    - name: "Download Pages artifact"
+      uses: "actions/download-artifact@v4"
+      with:
+        name: "github-pages"
+    - if: "steps.deploy.outcome == 'success'"
+      name: "Release Pages artifact"
+      uses: "softprops/action-gh-release@v2"
+      with:
+        body: "Rolling Pages artifact"
+        draft: false
+        files: "artifact.tar"
+        prerelease: false
+        tag_name: "github-pages"
+        token: "${{ secrets.GITHUB_TOKEN }}"
+name: "Publish packages"
+"on":
+  merge_group: {}
+  pull_request:
+    paths:
+    - "pkgs.json"
+    - "pkgs.lock"
+  push:
+    branches:
+    - "main"
+    paths:
+    - "pkgs.json"
+    - "pkgs.lock"
+  workflow_dispatch: {}
+permissions: {}
