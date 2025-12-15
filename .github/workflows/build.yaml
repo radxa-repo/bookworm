@@ -83,7 +83,7 @@ jobs:
       name: "Deploy to GitHub Pages"
       uses: "actions/deploy-pages@v4"
     - name: "Download Pages artifact"
-      uses: "actions/download-artifact@v6"
+      uses: "actions/download-artifact@v7"
       with:
         name: "github-pages"
     - if: "steps.deploy.outcome == 'success'"
