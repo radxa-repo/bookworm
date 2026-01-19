@@ -27,7 +27,7 @@
   "libdrm": "2.4.122+git2407090927.b065db.oibaf.j",
   "libreelec-alsa-utils": "11.0.1-4",
   "librtui": "0.2.1",
-  "linux-a733": "5.15.147-13",
+  "linux-a733": "5.15.147-14",
   "linux-aw2501": "5.15.147-13",
   "linux-qc2509": "6.8.12-2",
   "linux-qcom": "6.17.1-6",
