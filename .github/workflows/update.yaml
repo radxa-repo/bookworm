@@ -14,13 +14,15 @@ jobs:
       with:
         script: |
           const secrets = JSON.parse(process.env.SECRETS);
-          if (secrets.GPG_KEY === undefined || secrets.RADXA_APT_KEY_2024 === undefined) {
+          if (secrets.RADXA_APT_KEY_2024 === undefined ||
+              secrets.GPG_KEY === undefined ||
+              secrets.RADXA_APT_KEY_2026 === undefined) {
               core.setFailed('Required secrets are unset!');
           }
     - name: "Checkout rsdk"
       uses: "actions/checkout@v6"
       with:
-        ref: "5958384b771eb0023fb9ff0e9dddc509ef7a4ede"
+        ref: "92f3bc1e62955bee4c954a44f6653e2e3b808045"
         repository: "RadxaOS-SDK/rsdk"
     - name: "Checkout current repo"
       uses: "actions/checkout@v6"
@@ -39,6 +41,9 @@ jobs:
             git add pkgs.lock
         fi
         
+        # Clean up wget file in case it failed (for example no lock in test repo)
+        rm -f pkgs.lock.new
+        
         ../src/bin/rsdk infra-pkg-snapshot
         git add pkgs.json
         
@@ -49,7 +54,8 @@ jobs:
         fi
         popd
       shell: "bash"
-    - name: "Commit package snapshot"
+    - if: "github.event_name != 'pull_request'"
+      name: "Commit package snapshot"
       run: |
         pushd .infra-repo
         git push
@@ -57,6 +63,9 @@ jobs:
       shell: "bash"
 name: "Update package version info"
 "on":
+  pull_request:
+    paths:
+    - ".github/workflows/update.yaml"
   repository_dispatch:
     types:
     - "new_package_release"

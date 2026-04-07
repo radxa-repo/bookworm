@@ -12,7 +12,7 @@ jobs:
     - name: "Checkout rsdk"
       uses: "actions/checkout@v6"
       with:
-        ref: "5958384b771eb0023fb9ff0e9dddc509ef7a4ede"
+        ref: "92f3bc1e62955bee4c954a44f6653e2e3b808045"
         repository: "RadxaOS-SDK/rsdk"
     - name: "Checkout current repo"
       uses: "actions/checkout@v6"
@@ -23,15 +23,6 @@ jobs:
       id: "build"
       name: "Build apt archive"
       run: |
-        # ubuntu-latest is currently ubuntu-22.04, which provides aptly 1.4.0
-        # Only 1.5.0 supports Ubuntu's zstd compressed packages:
-        #   https://github.com/aptly-dev/aptly/pull/1050
-        # ubuntu-24.04 provides 1.5.0, but will not be available till August:
-        #   https://github.com/actions/runner-images/issues/9691#issuecomment-2063926929
-        # Install aptly from upstream archive for now.
-        sudo tee /etc/apt/sources.list.d/10-aptly.list <<< "deb http://repo.aptly.info/ squeeze main"
-        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EE727D4449467F0E
-        
         sudo apt-get update
         sudo apt-get install -y aptly pandoc
         
@@ -45,10 +36,13 @@ jobs:
         export PATH="$APTLY_PATH:$PATH"
         
         cat << EOF | gpg --import
+        ${{ secrets.RADXA_APT_KEY_2024 }}
+        EOF
+        cat << EOF | gpg --import
         ${{ secrets.GPG_KEY }}
         EOF
         cat << EOF | gpg --import
-        ${{ secrets.RADXA_APT_KEY_2024 }}
+        ${{ secrets.RADXA_APT_KEY_2026 }}
         EOF
         
         suites=(
@@ -64,10 +58,10 @@ jobs:
         export RSDK_REPO_ORIGIN="$(../src/bin/rsdk config infra.repository.origin)"
         
         pushd "$HOME/.aptly/public/$RSDK_REPO_ORIGIN/"
-            cp "$OLDPWD/pkgs.json" ./
+            cp "$OLDPWD/pkgs.json" "$OLDPWD/install.sh" ./
             pandoc --from gfm --to html --standalone "$OLDPWD/README.md" --output index.html
             find . > files.list
-            echo "pages=$(realpath .)" >> $GITHUB_OUTPUT
+            echo "pages=$(realpath .)" | tee -a $GITHUB_OUTPUT
         popd
         
         popd
@@ -103,11 +97,14 @@ name: "Publish packages"
     paths:
     - "pkgs.json"
     - "pkgs.lock"
+    - ".github/workflows/build.yaml"
   push:
     branches:
     - "main"
+    - "gh-readonly-queue/main/*"
     paths:
     - "pkgs.json"
     - "pkgs.lock"
+    - ".github/workflows/build.yaml"
   workflow_dispatch: {}
 permissions: {}
