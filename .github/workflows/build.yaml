@@ -82,7 +82,7 @@ jobs:
         name: "github-pages"
     - if: "steps.deploy.outcome == 'success'"
       name: "Release Pages artifact"
-      uses: "softprops/action-gh-release@v2"
+      uses: "softprops/action-gh-release@v3"
       with:
         body: "Rolling Pages artifact"
         draft: false
