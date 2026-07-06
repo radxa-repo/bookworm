@@ -19,3 +19,4 @@ If your issue is related to a specific package's usage, you should file issues u
 # But, here is a convenient one-liner:
 curl https://radxa-repo.github.io/bookworm/install.sh | sh
 ```
+
