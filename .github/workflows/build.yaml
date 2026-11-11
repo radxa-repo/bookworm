@@ -9,10 +9,19 @@ jobs:
       pages: "write"
     runs-on: "ubuntu-latest"
     steps:
+    - name: "Secret tests"
+      uses: "actions/github-script@v9"
+      with:
+        script: |
+          if (${{ secrets.RADXA_APT_KEY_2024 == '' }} ||
+              ${{ secrets.GPG_KEY == '' }} ||
+              ${{ secrets.RADXA_APT_KEY_2026 == '' }}) {
+              core.setFailed('Required secrets are unset!');
+          }
     - name: "Checkout rsdk"
       uses: "actions/checkout@v7"
       with:
-        ref: "3c5a176075dcc7585a1b10f292cffd6f22e4af22"
+        ref: "66bdd2b23469bff52bc8b4e03cb572f6b7112ce2"
         repository: "RadxaOS-SDK/rsdk"
     - name: "Checkout current repo"
       uses: "actions/checkout@v7"
